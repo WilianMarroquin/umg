@@ -25,7 +25,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
-route::view('/blog', 'Blog')->name('Blog');
+route::view('/blog', 'blog')->name('blog');
 
 Route::get('/perfil', [App\Http\Controllers\ProductoController::class, 'index'])->name('perfil');
 Route::view('/perfil/crear', 'perfil.crear')->name('crear_producto');
