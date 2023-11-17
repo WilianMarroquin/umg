@@ -2,26 +2,26 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Models\Producto; 
-use App\Models\Descripcion; 
+use App\Models\Producto;
+use App\Models\Descripcion;
 
 class ProductoController extends Controller
 {
-     
-    
+
+
     public function index(Request $request)
     {
-        $productos = Producto::paginate(20); 
-        $descripcion = Descripcion::paginate(30); 
-        return view('perfil.index', compact('productos', 'descripcion')); 
+        $productos = Producto::paginate(20);
+        $descripcion = Descripcion::paginate(30);
+        return view('perfil.index', compact('productos', 'descripcion'));
 
     }
 
     public function index2(Request $request){
-        $productos = Producto::paginate(10); 
-        return view('home', compact('productos')); 
+        $productos = Producto::paginate(10);
+        return view('blog', compact('productos'));
     }
-     
+
 
     /**
      * Show the form for creating a new resource.
@@ -46,16 +46,16 @@ class ProductoController extends Controller
         'img'=>'required|image|mimes:jpeg,png,svg',
         'venta_arquiler'=>'required'
        ]);
-        $producto = $request->all(); 
+        $producto = $request->all();
 
         if($imagen = $request->file('img')){
-            $rutaGuardarImg = 'img/'; 
-            $imagenProducto = date('YmdHis'). ".". $imagen->getClientOriginalExtension(); 
-            $imagen->move($rutaGuardarImg, $imagenProducto); 
-            $producto['img']= "$imagenProducto"; 
+            $rutaGuardarImg = 'img/';
+            $imagenProducto = date('YmdHis'). ".". $imagen->getClientOriginalExtension();
+            $imagen->move($rutaGuardarImg, $imagenProducto);
+            $producto['img']= "$imagenProducto";
         }
-        Producto::create($producto); 
-        return redirect()->route('perfil'); 
+        Producto::create($producto);
+        return redirect()->route('perfil');
     }
 
     /**
@@ -64,7 +64,7 @@ class ProductoController extends Controller
     public function show(Producto $item)
     {
         return view('perfil.vizualisar', compact('item'));
-        
+
     }
 
     /**
@@ -72,7 +72,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $item)
     {
-        return view('perfil.edit', ['item'=>$item]); 
+        return view('perfil.edit', ['item'=>$item]);
     }
 
     /**
@@ -85,11 +85,11 @@ class ProductoController extends Controller
 
     {
       if($imagen = $request->file('img')){
-        $rutaGuardarImg = 'img/'; 
-        $imagenProducto = date('YmdHis'). ".". $imagen->getClientOriginalExtension(); 
-        $imagen->move($rutaGuardarImg, $imagenProducto); 
-        $productos= "$imagenProducto"; 
-    }   
+        $rutaGuardarImg = 'img/';
+        $imagenProducto = date('YmdHis'). ".". $imagen->getClientOriginalExtension();
+        $imagen->move($rutaGuardarImg, $imagenProducto);
+        $productos= "$imagenProducto";
+    }
     $profesor = Producto::findOrFail($item->id);
     $profesor->nombre = $request->nombre;
     $profesor->tipo = $request->tipo;
@@ -102,7 +102,7 @@ class ProductoController extends Controller
     $profesor->venta_arquiler = $request->venta_arquiler;
 
     $profesor->save();
-    return redirect()->route('perfil'); 
+    return redirect()->route('perfil');
     }
 
     /**
@@ -110,7 +110,7 @@ class ProductoController extends Controller
      */
     public function destroy(Producto $item)
     {
-    $item->delete(); 
-    return to_route('perfil')->with('status', 'post delete'); 
+    $item->delete();
+    return to_route('perfil')->with('status', 'post delete');
     }
 }
