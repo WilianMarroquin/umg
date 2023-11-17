@@ -21,7 +21,7 @@
                     Inicio
                 </a> --}}
                 <a class="navbar navbar-expand-md navbar-light; ver" style="color: black; text-decoration: none; "
-                    href="{{ route('Blog') }}">
+                    href="{{ route('blog') }}">
                     <img class="rosa" src="https://cdn-icons-png.flaticon.com/128/7407/7407915.png" alt="">
                     Blog
                 </a>
@@ -35,7 +35,7 @@
                     <img class="rosa" src="https://cdn-icons-png.flaticon.com/128/8165/8165322.png" alt="">
                     Informacion
                 </a>
-               
+
                 @Auth
                     <a class="navbar navbar-expand-md navbar-light; ver" style="color: black; text-decoration: none;"
                         href="{{ route('perfil') }}">
@@ -373,9 +373,9 @@
                             border: none;
                             color: blue;
                             text-decoration: underline;
-                           
+
                         }
-                       
+
 
 
                         @media screen and(max-width:500px) {
@@ -405,7 +405,7 @@
                             <li><i class="icono fas fa-user-check"></i>{{ $var->descripcion }}</li>
                         </ul>
                     </div>
-                    
+
                 </div>
             </section>
             <style>
